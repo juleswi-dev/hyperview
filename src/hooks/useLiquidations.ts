@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useEffect, useMemo, useCallback, useRef } from "react";
-import { api, HLP_VAULT_ADDRESS } from "@/lib/hyperliquid/api";
-import { wsClient, subscribeToUserFills, subscribeToTrades } from "@/lib/hyperliquid/websocket";
+import { api } from "@/lib/hyperliquid/api";
+import { wsClient, subscribeToTrades } from "@/lib/hyperliquid/websocket";
 import {
   useLiquidationStore,
   selectStats,
@@ -11,13 +11,14 @@ import {
 import { useMarketStore } from "@/stores/marketStore";
 import type { Fill } from "@/types/hyperliquid";
 
-// Minimum number of coins to monitor for large trade heuristic.
-// We pick top coins by open interest so we catch altcoin cascades too.
+// Monitor top coins by OI for large trade heuristic
 const MIN_MONITORED_COINS = 10;
 const FALLBACK_COINS = ["BTC", "ETH", "SOL", "DOGE", "WIF", "AVAX", "ARB", "OP", "SUI", "PEPE"];
 
+// How often to scan for confirmed liquidations via MM fills (ms)
+const MM_SCAN_INTERVAL = 120_000; // every 2 minutes
+
 export function useLiquidations() {
-  // Select individual stable action references — NOT the entire store object.
   const liquidations = useLiquidationStore((s) => s.liquidations);
   const largeTrades = useLiquidationStore((s) => s.largeTrades);
   const isLoading = useLiquidationStore((s) => s.isLoading);
@@ -30,15 +31,13 @@ export function useLiquidations() {
   const setError = useLiquidationStore((s) => s.setError);
   const setConnected = useLiquidationStore((s) => s.setConnected);
 
-  // Get top coins by OI from market store for dynamic monitoring
   const assets = useMarketStore((s) => s.assets);
-
   const [now, setNow] = useState(Date.now());
 
-  // Track which coins we're subscribed to for trade monitoring
-  const subscribedCoinsRef = useRef<string[]>([]);
+  // Track discovered MM addresses for periodic scanning
+  const knownMMsRef = useRef<string[]>([]);
+  const scanTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  // Compute top coins by OI
   const topCoins = useMemo(() => {
     if (assets.length === 0) return FALLBACK_COINS;
     return [...assets]
@@ -47,76 +46,75 @@ export function useLiquidations() {
       .map((a) => a.meta.name);
   }, [assets]);
 
-  // Refresh time every 60s so stats buckets stay accurate
+  // Refresh time every 60s
   useEffect(() => {
     const timer = setInterval(() => setNow(Date.now()), 60_000);
     return () => clearInterval(timer);
   }, []);
 
-  // Load historical data
-  const loadHistory = useCallback(async () => {
+  /**
+   * Scan active market makers' fills for confirmed liquidations.
+   * This is the primary source of confirmed liquidation data since
+   * HLP vault no longer has fills directly.
+   */
+  const scanForLiquidations = useCallback(async (isInitial: boolean) => {
     try {
-      setLoading(true);
-      setError(null);
-      const startTime = Date.now() - 24 * 60 * 60 * 1000;
-      const fills = await api.getHLPFillsByTime(startTime);
-      processFills(fills);
-    } catch (e) {
-      const msg = e instanceof Error ? e.message : "Failed to load liquidation history";
-      console.error("Failed to load liquidation history:", e);
-      setError(msg);
-    } finally {
-      setLoading(false);
-    }
-  }, [setLoading, setError, processFills]);
+      if (isInitial) {
+        setLoading(true);
+        setError(null);
+      }
 
-  useEffect(() => {
-    loadHistory();
-  }, [loadHistory]);
+      // Step 1: Discover active traders from recent trades
+      const topCoinNames = topCoins.slice(0, 5);
+      const activeTraders = await api.discoverActiveTraders(topCoinNames);
+      knownMMsRef.current = activeTraders;
 
-  // Gap-fill: backfill missed data after WS reconnection
-  const gapFill = useCallback(async (fromTime: number) => {
-    if (fromTime <= 0) return;
-    try {
-      const fills = await api.getHLPFillsByTime(fromTime);
-      if (fills.length > 0) {
-        processFills(fills);
+      // Step 2: Scan their fills for liquidation events (last 24h for initial, last scan period for refresh)
+      const startTime = isInitial
+        ? Date.now() - 24 * 60 * 60 * 1000
+        : Date.now() - MM_SCAN_INTERVAL - 30_000; // overlap by 30s to not miss anything
+
+      const liqFills = await api.scanForLiquidationFills(
+        activeTraders.slice(0, 8), // limit to top 8 to respect rate limits
+        startTime,
+      );
+
+      if (liqFills.length > 0) {
+        processFills(liqFills);
       }
     } catch (e) {
-      console.error("Gap-fill failed:", e);
+      const msg = e instanceof Error ? e.message : "Failed to scan for liquidations";
+      console.error("Liquidation scan failed:", e);
+      if (isInitial) setError(msg);
+    } finally {
+      if (isInitial) setLoading(false);
     }
-  }, [processFills]);
+  }, [topCoins, processFills, setLoading, setError]);
 
-  // WebSocket subscriptions
+  // Initial load + periodic scan
+  useEffect(() => {
+    scanForLiquidations(true);
+
+    // Periodic re-scan for new confirmed liquidations
+    scanTimerRef.current = setInterval(() => {
+      scanForLiquidations(false);
+    }, MM_SCAN_INTERVAL);
+
+    return () => {
+      if (scanTimerRef.current) clearInterval(scanTimerRef.current);
+    };
+  }, [scanForLiquidations]);
+
+  // WebSocket: subscribe to trades for large trade heuristic
   useEffect(() => {
     const unsubscribes: Array<() => void> = [];
-    let wasConnected = false;
 
-    const removeListener = wsClient.onConnectionChange((connected) => {
-      setConnected(connected);
-
-      // When reconnecting after a disconnect, backfill the gap
-      if (connected && wasConnected) {
-        const lt = useLiquidationStore.getState().lastFillTime;
-        if (lt > 0) {
-          gapFill(lt);
-        }
-      }
-      wasConnected = connected;
-    });
+    const removeListener = wsClient.onConnectionChange(setConnected);
     unsubscribes.push(removeListener);
 
     async function connect() {
       try {
         await wsClient.connect();
-        wasConnected = true;
-
-        unsubscribes.push(
-          subscribeToUserFills(HLP_VAULT_ADDRESS, (data) => {
-            const fills = (data as { fills?: Fill[] }).fills || [];
-            processFills(fills as Fill[]);
-          }),
-        );
 
         // Subscribe to top coins for large trade monitoring
         topCoins.forEach((coin) => {
@@ -129,12 +127,12 @@ export function useLiquidations() {
                   px: string;
                   sz: string;
                   time: number;
+                  hash?: string;
                 }>,
               );
             }),
           );
         });
-        subscribedCoinsRef.current = topCoins;
       } catch (e) {
         console.error("WebSocket connection failed:", e);
       }
@@ -144,7 +142,7 @@ export function useLiquidations() {
     return () => {
       unsubscribes.forEach((unsub) => unsub());
     };
-  }, [setConnected, processFills, processLargeTrades, gapFill, topCoins]);
+  }, [setConnected, processLargeTrades, topCoins]);
 
   const stats = useMemo(() => selectStats(liquidations, now), [liquidations, now]);
   const allActivity = useMemo(() => selectAllActivity(liquidations, largeTrades), [liquidations, largeTrades]);
@@ -157,6 +155,6 @@ export function useLiquidations() {
     isConnected,
     isLoading,
     error,
-    retry: loadHistory,
+    retry: () => scanForLiquidations(true),
   };
 }

@@ -41,7 +41,7 @@ export async function getMetaAndAssetCtxs(): Promise<
   return cachedFetch(
     "metaAndAssetCtxs",
     () => fetchInfo({ type: "metaAndAssetCtxs" }),
-    55_000,  // slightly less than 60s refresh interval to avoid stale edge case
+    55_000,
   );
 }
 
@@ -70,7 +70,6 @@ export async function getCandles(
   startTime: number,
   endTime?: number
 ): Promise<Candle[]> {
-  // Round startTime to 30s granularity so near-identical requests share cache
   const roundedStart = Math.floor(startTime / 30_000) * 30_000;
   const roundedEnd = endTime ? Math.floor(endTime / 30_000) * 30_000 : "";
   return cachedFetch(
@@ -108,8 +107,7 @@ export async function getUserFillsByTime(
 
 /**
  * Paginated fetch of user fills by time.
- * Hyperliquid returns max 500 fills per response. If the response has 500,
- * we fetch again from the last fill's timestamp until we get <500 results.
+ * Hyperliquid returns max 500 fills per response.
  */
 export async function getUserFillsByTimePaginated(
   user: string,
@@ -120,20 +118,17 @@ export async function getUserFillsByTimePaginated(
   const allFills: Fill[] = [];
   let cursor = startTime;
 
-  // eslint-disable-next-line no-constant-condition
-  while (true) {
+  for (;;) {
     const page = await getUserFillsByTime(user, cursor, endTime);
     allFills.push(...page);
 
     if (page.length < PAGE_SIZE) break;
 
-    // Move cursor past the last fill to avoid duplicates
     const lastTime = page[page.length - 1].time;
-    if (lastTime <= cursor) break; // safety: prevent infinite loop
+    if (lastTime <= cursor) break;
     cursor = lastTime;
   }
 
-  // Deduplicate by hash in case of overlapping timestamps
   const seen = new Set<string>();
   return allFills.filter((f) => {
     if (seen.has(f.hash)) return false;
@@ -170,18 +165,19 @@ export async function getPredictedFundings(): Promise<
   return fetchInfo({ type: "predictedFundings" });
 }
 
-// Recent Trades
-export async function getRecentTrades(coin: string): Promise<
-  Array<{
-    coin: string;
-    side: "A" | "B";
-    px: string;
-    sz: string;
-    time: number;
-    hash: string;
-    tid: number;
-  }>
-> {
+// Recent Trades (now includes `users` array with counterparty addresses)
+export interface RecentTrade {
+  coin: string;
+  side: "A" | "B";
+  px: string;
+  sz: string;
+  time: number;
+  hash: string;
+  tid: number;
+  users?: string[];
+}
+
+export async function getRecentTrades(coin: string): Promise<RecentTrade[]> {
   return cachedFetch(
     `recentTrades:${coin}`,
     () => fetchInfo({ type: "recentTrades", coin }),
@@ -189,19 +185,72 @@ export async function getRecentTrades(coin: string): Promise<
   );
 }
 
-// HLP Vault Address
+// HLP Vault Address (kept for reference, but vault no longer has fills directly)
 export const HLP_VAULT_ADDRESS = "0xdfc24b077bc1425ad1dea75bcb6f8158e10df303";
 
-// Get HLP Vault Fills (for liquidation tracking)
-export async function getHLPFills(): Promise<Fill[]> {
-  return getUserFills(HLP_VAULT_ADDRESS);
+/**
+ * Scan fills of given addresses for liquidation events.
+ * Liquidation fills have a `liquidation` field on the counterparty's fills.
+ * Returns only fills where liquidation is present.
+ */
+export async function scanForLiquidationFills(
+  addresses: string[],
+  startTime: number,
+): Promise<Fill[]> {
+  const allLiqFills: Fill[] = [];
+
+  for (const addr of addresses) {
+    try {
+      const fills = await getUserFillsByTime(addr, startTime);
+      if (!Array.isArray(fills)) continue;
+
+      for (const fill of fills) {
+        if (fill.liquidation) {
+          allLiqFills.push(fill);
+        }
+      }
+    } catch {
+      // Skip failed requests (rate limit, etc.)
+    }
+  }
+
+  // Deduplicate by hash
+  const seen = new Set<string>();
+  return allLiqFills.filter((f) => {
+    if (seen.has(f.hash)) return false;
+    seen.add(f.hash);
+    return true;
+  });
 }
 
-export async function getHLPFillsByTime(
-  startTime: number,
-  endTime?: number
-): Promise<Fill[]> {
-  return getUserFillsByTimePaginated(HLP_VAULT_ADDRESS, startTime, endTime);
+/**
+ * Discover active market maker addresses from recent trades.
+ * MMs appear frequently across different coins' trade feeds.
+ */
+export async function discoverActiveTraders(
+  coins: string[],
+): Promise<string[]> {
+  const addressCount = new Map<string, number>();
+
+  for (const coin of coins.slice(0, 5)) {
+    try {
+      const trades = await getRecentTrades(coin);
+      for (const t of trades) {
+        if (t.users) {
+          for (const u of t.users) {
+            addressCount.set(u, (addressCount.get(u) || 0) + 1);
+          }
+        }
+      }
+    } catch {
+      // Skip
+    }
+  }
+
+  return [...addressCount.entries()]
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 15)
+    .map(([addr]) => addr);
 }
 
 // API object for convenience
@@ -218,6 +267,6 @@ export const api = {
   getFundingHistory,
   getPredictedFundings,
   getRecentTrades,
-  getHLPFills,
-  getHLPFillsByTime,
+  scanForLiquidationFills,
+  discoverActiveTraders,
 };

@@ -49,8 +49,8 @@ export default function LiquidationsPage() {
         <div className="mb-8">
           <h1 className="text-2xl font-bold mb-2">Liquidations</h1>
           <p className="text-zinc-400">
-            Track liquidations on Hyperliquid in real-time. Backstop liquidations from
-            the HLP vault are confirmed, large trades are potential market liquidations.
+            Track liquidations on Hyperliquid in real-time. Confirmed liquidations are
+            detected from active market maker fills, large trades are potential market liquidations.
           </p>
         </div>
 
