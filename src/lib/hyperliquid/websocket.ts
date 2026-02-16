@@ -45,6 +45,13 @@ class HyperliquidWebSocket {
     // Reset reconnect counter on explicit connect() call
     this.reconnectAttempts = 0;
 
+    // Cancel any pending reconnect timer to prevent it from
+    // overwriting this new connection attempt
+    if (this.reconnectTimer) {
+      clearTimeout(this.reconnectTimer);
+      this.reconnectTimer = null;
+    }
+
     this.connectPromise = this.createConnection();
     return this.connectPromise;
   }
@@ -171,6 +178,13 @@ class HyperliquidWebSocket {
     );
 
     this.reconnectTimer = setTimeout(() => {
+      this.reconnectTimer = null;
+
+      // Skip if already connected or another connect() is in progress
+      if (this.ws?.readyState === WebSocket.OPEN || this.connectPromise) {
+        return;
+      }
+
       this.connectPromise = this.createConnection();
       this.connectPromise.catch((err) => {
         console.error("[WS] Reconnection failed:", err);
