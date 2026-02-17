@@ -9,6 +9,8 @@ const navItems = [
   { href: "/", label: "Dashboard" },
   { href: "/liquidations", label: "Liquidations" },
   { href: "/markets", label: "Markets" },
+  { href: "/bot", label: "Bot" },
+  { href: "/statistics", label: "Statistics" },
 ];
 
 export function Header() {
@@ -33,7 +35,7 @@ export function Header() {
                 href={item.href}
                 className={clsx(
                   "px-4 py-2 rounded-lg text-sm font-medium transition-colors",
-                  pathname === item.href
+                  (pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href)))
                     ? "bg-zinc-800 text-white"
                     : "text-zinc-400 hover:text-white hover:bg-zinc-800/50"
                 )}
@@ -73,7 +75,7 @@ export function Header() {
                 onClick={() => setMobileOpen(false)}
                 className={clsx(
                   "block px-4 py-2.5 rounded-lg text-sm font-medium transition-colors",
-                  pathname === item.href
+                  (pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href)))
                     ? "bg-zinc-800 text-white"
                     : "text-zinc-400 hover:text-white hover:bg-zinc-800/50"
                 )}
