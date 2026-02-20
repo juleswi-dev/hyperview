@@ -1,0 +1,2482 @@
+00:01 All right, so I want to do a full
+00:02 
+
+00:02 rundown here of Coin App. What is it and
+00:04 
+
+00:04 why it's here? I built it for myself to
+00:06 
+
+00:06 trade 40x leverage. I'm a fully
+00:09 
+
+00:09 algorithmic trader and I don't believe
+00:11 
+
+00:11 in 40x leverage. I've spent the last 5
+00:13 
+
+00:13 years showing how I've automated my
+00:16 
+
+00:16 systems and exactly how anybody could do
+00:19 
+
+00:19 this. I didn't go to school for this. I
+00:21 
+
+00:21 I got held back in seventh grade. I'm
+00:22 
+
+00:22 not the the perfect quant or whatever
+00:25 
+
+00:25 you want to call it. I just had a
+00:27 
+
+00:27 problem. I was using emotions, trading
+00:29 
+
+00:29 with too much leverage, getting
+00:30 
+
+00:30 liquidated, predict, trying to predict
+00:32 
+
+00:32 price as a human because it was 9:30
+00:34 
+
+00:34 time to trade and I just got smoked over
+00:37 
+
+00:37 and over and over again. So that led me
+00:40 
+
+00:40 to actually meet somebody who was an
+00:42 
+
+00:42 algorithmic trader and that inspired me
+00:44 
+
+00:44 to automate my trading. That was about 5
+00:46 
+
+00:46 years ago. And I showed everything on
+00:49 
+
+00:49 YouTube for free.
+00:52 
+
+00:52 every single piece of code, every single
+00:54 
+
+00:54 project, the goods, the bads, the
+00:56 
+
+00:56 uglies. But after five years, uh, you
+00:59 
+
+00:59 know, I had this realization the other
+00:60 
+
+00:60 day since in the last year or so, I
+01:02 
+
+01:02 finally got liquidation data or I can
+01:04 
+
+01:04 see everybody's positions here on
+01:06 
+
+01:06 Hyperlid. So, I see everybody using 40x
+01:08 
+
+01:08 leverage. But after watching this for
+01:11 
+
+01:11 like a year, um, the end of 2025, I was
+01:15 
+
+01:15 like, damn, dude. There's a 100,000
+01:18 
+
+01:18 subscribers on my YouTube now, 50,000
+01:20 
+
+01:20 plus people on Twitter. That's a lot of
+01:22 
+
+01:22 people. And I see how many people
+01:24 
+
+01:24 actually joined the boot camp over the
+01:26 
+
+01:26 past 5 years. And it's so so tiny
+01:29 
+
+01:29 compared to the amount of people that
+01:32 
+
+01:32 are watching me code these bots. So came
+01:35 
+
+01:35 to the realization, damn, nobody's
+01:37 
+
+01:37 actually taking
+01:40 
+
+01:40 my approach and nobody's listening to
+01:43 
+
+01:43 the things I say you should do. You
+01:45 
+
+01:45 should you should automate your trading.
+01:46 
+
+01:46 You should remove your emotions. Yeah.
+01:48 
+
+01:48 Yeah. Nobody's listening to that. Let's
+01:49 
+
+01:49 get to the bag. 40x leverage. That's
+01:51 
+
+01:51 what's happening, right? So, I might
+01:55 
+
+01:55 just be deeper in the evolution
+01:58 
+
+01:58 than the majority, and that's fine. I'm
+01:60 
+
+01:60 not better than anybody. I just have
+02:02 
+
+02:02 been trading longer and realize, damn, I
+02:04 
+
+02:04 just keep coming back to this casino
+02:06 
+
+02:06 using 40x leverage, staring at the
+02:08 
+
+02:08 charts all night, all weekend, dude.
+02:10 
+
+02:10 Come on. Just up and down, up and down.
+02:12 
+
+02:12 Your PL goes up, you think you're the
+02:14 
+
+02:14 man. Your PL goes down, you think you're
+02:16 
+
+02:16 the worst. It's just not good for the
+02:18 
+
+02:18 human psyche. So, you know, I that's why
+02:21 
+
+02:21 I stepped away from that's why I stepped
+02:24 
+
+02:24 away from trading by hand, especially
+02:25 
+
+02:25 with huge leverage. But if everybody is
+02:29 
+
+02:29 using 40x leverage, everybody's using
+02:32 
+
+02:32 max leverage, everybody's trading by
+02:34 
+
+02:34 hand, and there's 150,000 people now
+02:37 
+
+02:37 interested in these videos, dude. Like,
+02:39 
+
+02:39 okay, that means that I'm actually
+02:42 
+
+02:42 serving the minority. There's only a
+02:44 
+
+02:44 small percentage of people that will
+02:46 
+
+02:46 actually go out and learn how to code so
+02:49 
+
+02:49 they can automate their trading
+02:52 
+
+02:52 and I have the numbers. I got the stats
+02:56 
+
+02:56 and I'm a data dog.
+02:60 
+
+02:60 The data told me 5 years ago, stop
+03:02 
+
+03:02 trading, dude. Stop using so much
+03:04 
+
+03:04 leverage. I'm not going to stop trading
+03:06 
+
+03:06 because I see the vehicle.
+03:09 
+
+03:09 But I can approach it differently. So I
+03:11 
+
+03:11 took the automated approach. I showed
+03:13 
+
+03:13 everything on YouTube for free for the
+03:14 
+
+03:14 last 5 years.
+03:16 
+
+03:16 Sadly, everybody's still using 40x
+03:18 
+
+03:18 leverage.
+03:19 
+
+03:19 So, instead of telling you what you
+03:21 
+
+03:21 should do, I'm jumping into the pool
+03:23 
+
+03:23 with you guys. I'm going back to the the
+03:27 
+
+03:27 40x leverage streets. It's scary. I'm
+03:30 
+
+03:30 scared right now.
+03:33 
+
+03:33 But if I'mma do this, I'mma do it with
+03:35 
+
+03:35 bumpers. That's how I like to look at
+03:36 
+
+03:36 this. Go to the bowling alley, right? in
+03:39 
+
+03:39 a business like this,
+03:41 
+
+03:41 just keep making
+03:43 
+
+03:43 things better. Keep improving the system
+03:47 
+
+03:47 because other parts of it are going to
+03:50 
+
+03:50 wear out after a while. People will
+03:52 
+
+03:52 catch on to this or they'll catch on to
+03:54 
+
+03:54 that. So you you just have to like in
+03:56 
+
+03:56 any business in any business, you just
+03:58 
+
+03:58 have to make things better and better
+04:00 
+
+04:00 and better because that's what everyone
+04:02 
+
+04:02 else is trying to do.
+04:03 
+
+04:03 >> That's what everybody else is trying to
+04:04 
+
+04:04 do. That was Jim Simons. That's the guy
+04:07 
+
+04:07 I've been chasing. for the last 5 years
+04:09 
+
+04:09 and shared everything along the way. But
+04:10 
+
+04:10 let's not talk about what you should do.
+04:13 
+
+04:13 Let's talk about what everybody's doing
+04:14 
+
+04:14 using 40x leverage. Okay? If I'm going
+04:16 
+
+04:16 to play in this game, I'm going to use
+04:18 
+
+04:18 some of the quant skills and learnings
+04:20 
+
+04:20 I've had through back testing, etc.
+04:22 
+
+04:22 Building bots live in production. I I've
+04:25 
+
+04:25 got experience now. It's not the most in
+04:27 
+
+04:27 the world, of course not. Jim Simons,
+04:29 
+
+04:29 you just heard from, he ran up a bag of
+04:30 
+
+04:30 31 billion. I've got a long ways to go,
+04:32 
+
+04:32 but there's some ideas I have
+04:36 
+
+04:36 for this time. Coming back into the hand
+04:39 
+
+04:39 trading world. If I'm going to trade
+04:40 
+
+04:40 like a DJ, I'm going to use bumpers.
+04:42 
+
+04:42 People will laugh at me because I'm at
+04:44 
+
+04:44 the bowling alley with bumpers. But it's
+04:46 
+
+04:46 okay.
+04:49 
+
+04:49 I'm just trying to figure out the
+04:51 
+
+04:51 biggest problem in crypto. And the
+04:53 
+
+04:53 biggest problem is, okay, you'll do
+04:54 
+
+04:54 this, you'll do that, you'll you'll
+04:56 
+
+04:56 farm, you'll trade memes, you'll take
+04:59 
+
+04:59 some per trades, but at the end of the
+05:00 
+
+05:00 day, you're going to end up using max
+05:02 
+
+05:02 leverage and liquidated, losing
+05:03 
+
+05:03 everything. That's the biggest problem
+05:05 
+
+05:05 in crypto right now. And if I'm showing
+05:07 
+
+05:07 how to automate your trading, there's a
+05:09 
+
+05:09 huge huge barrier to that.
+05:12 
+
+05:12 I'm assuming I've been assuming that
+05:15 
+
+05:15 everybody will just go learn how to code
+05:16 
+
+05:16 like Mudab did, but it's a big feat. So,
+05:20 
+
+05:20 I'm just building my bumpers here. And
+05:22 
+
+05:22 that's the coin app. Coin app is putting
+05:24 
+
+05:24 bumpers on my trading. So there's some
+05:26 
+
+05:26 things that it does. So first off,
+05:28 
+
+05:28 you've got the front and center board.
+05:30 
+
+05:30 This uses proprietary data. It's not
+05:32 
+
+05:32 proprietary, but it's very, very hard to
+05:34 
+
+05:34 get. You have to have a hyperlquid node.
+05:37 
+
+05:37 I have a hyperlquid node. I've launched
+05:40 
+
+05:40 the API. You can read about that node.
+05:42 
+
+05:42 It's uh at mundave.comdocs.
+05:47 
+
+05:47 mundave.comdocs.
+05:51 
+
+05:51 It has all of the data you could ever
+05:54 
+
+05:54 imagine from Hyperlquid directly. You
+05:56 
+
+05:56 can't get it faster anywhere else. You
+05:58 
+
+05:58 use the API, you're cooked. I already
+06:00 
+
+06:00 learned I had to get everybody's
+06:02 
+
+06:02 positions. I wanted to see everybody's
+06:03 
+
+06:03 positions in the market. Because my
+06:06 
+
+06:06 thesis here is everybody that uses 40x
+06:08 
+
+06:08 leverage gets liquidated.
+06:11 
+
+06:11 So, if everybody that uses 40x leverage
+06:14 
+
+06:14 gets liquidated,
+06:16 
+
+06:16 then if I'm going to use 40x leverage,
+06:18 
+
+06:18 I'm going to get liquidated.
+06:21 
+
+06:21 So,
+06:23 
+
+06:23 instead of just trying to predict price,
+06:26 
+
+06:26 what I've been doing is just buying and
+06:29 
+
+06:29 selling people's liquidations. So,
+06:31 
+
+06:31 instead of saying, "Hey, I think price
+06:33 
+
+06:33 is going to go up because X, Y, or Z,"
+06:36 
+
+06:36 now I'm saying, "Hey, you smart guy over
+06:38 
+
+06:38 there thought price was going to go up
+06:42 
+
+06:42 You thought price was going to go up
+06:44 
+
+06:44 when it was over here. You made a
+06:47 
+
+06:47 million- dollar bet. Price would go up
+06:49 
+
+06:49 up here. Okay, let me take your bet, but
+06:51 
+
+06:51 let me take it once you get liquidated.
+06:53 
+
+06:53 So, that's why I'm looking at
+06:54 
+
+06:54 everybody's positions. Now, there's all
+06:56 
+
+06:56 types of strategies you can run with
+06:57 
+
+06:57 this liquidation data. I can't tell you
+07:00 
+
+07:00 a strategy. I'm not a financial adviser.
+07:02 
+
+07:02 None of this is plug-andplay. If you
+07:04 
+
+07:04 think that you can just download this
+07:05 
+
+07:05 app and make a bunch of money, you're
+07:07 
+
+07:07 going to get smoked. Absolutely. But I
+07:09 
+
+07:09 could tell you like what's in my brain
+07:10 
+
+07:10 and how I use this data. Again, this
+07:12 
+
+07:12 data is through my API. And I have a
+07:16 
+
+07:16 node running right here that I'm working
+07:18 
+
+07:18 on every single day, making it better
+07:19 
+
+07:19 and better. I'm making Hyperlid's data
+07:22 
+
+07:22 layer because it's powering my app,
+07:25 
+
+07:25 Quant app. I'm trading like a DJ again
+07:28 
+
+07:28 because everybody is using 40X leverage.
+07:32 
+
+07:32 It's kind of fun. It's very stressful
+07:34 
+
+07:34 though. So, I have to have these
+07:36 
+
+07:36 bumpers. So instead of trying to predict
+07:38 
+
+07:38 price if it's going to go up or down,
+07:39 
+
+07:39 I'm not doing that anymore. I just click
+07:41 
+
+07:41 here and say, "Hey, I want to buy his
+07:42 
+
+07:42 liquidation.
+07:44 
+
+07:44 I want to add to my position when he
+07:46 
+
+07:46 gets liquidated." And boom, boom, I add
+07:49 
+
+07:49 it.
+07:51 
+
+07:51 This is these are just pre-filled
+07:52 
+
+07:52 settings here you can play around with.
+07:54 
+
+07:54 I'll go through them later, but for now,
+07:57 
+
+07:57 I just want to explain this part because
+07:60 
+
+07:60 I think this right here is just a total
+08:03 
+
+08:03 totally different approach than most
+08:04 
+
+08:04 people take. Most people predict price
+08:06 
+
+08:06 and they want to be right. I don't care
+08:09 
+
+08:09 about being right. I just want to live.
+08:11 
+
+08:11 I want to be able to live as long as
+08:13 
+
+08:13 possible here in this 40x land. I don't
+08:16 
+
+08:16 know about you, but when I used to be a
+08:17 
+
+08:17 40x hand trader,
+08:20 
+
+08:20 I wouldn't last in the markets, my bag,
+08:23 
+
+08:23 whatever I threw at the thing, it
+08:24 
+
+08:24 wouldn't last more than two to three
+08:25 
+
+08:25 days max. And those two to three days, I
+08:28 
+
+08:28 was staring at the screen all day,
+08:30 
+
+08:30 neglecting friends, ne neglecting
+08:31 
+
+08:31 family, neglecting your pets. Dude, come
+08:34 
+
+08:34 on. It's It's an awful life staring at
+08:36 
+
+08:36 these charts just to try to predict
+08:37 
+
+08:37 price. So, building an app that not only
+08:41 
+
+08:41 is going to help me enter when other
+08:43 
+
+08:43 people get liquidated, I can I can also
+08:45 
+
+08:45 enter when like 11 million get
+08:47 
+
+08:47 liquidated in four hours. I can set all
+08:49 
+
+08:49 that up in actions here.
+08:52 
+
+08:52 A bunch of actions here. You can say,
+08:53 
+
+08:53 "Hey, when there's long liquidations of
+08:58 
+
+08:58 3 million, that's when I'll buy because
+09:00 
+
+09:00 I know from past experience that I
+09:03 
+
+09:03 usually am wrong. So instead of buying a
+09:06 
+
+09:06 long right here when I think it's time
+09:08 
+
+09:08 to trade, okay, yeah, it's 9:30. Time to
+09:11 
+
+09:11 trade. Let me take a long right here."
+09:12 
+
+09:12 But instead of doing that, I'm still
+09:14 
+
+09:14 probably going to be wrong. I know I'm
+09:17 
+
+09:17 going to be wrong here. But at least if
+09:20 
+
+09:20 I take somebody else's long after they
+09:22 
+
+09:22 were forced to sell it, it's going to be
+09:24 
+
+09:24 a better entry. You can see this could
+09:26 
+
+09:26 be a win, could be a loss. So it's not
+09:28 
+
+09:28 going to make you a automatically a
+09:30 
+
+09:30 profitable trader. It's just helping you
+09:32 
+
+09:32 make decisions better essentially. So if
+09:35 
+
+09:35 you want to be short, well, I would
+09:37 
+
+09:37 rather take somebody short
+09:40 
+
+09:40 when they get liquidated. So if I wanted
+09:43 
+
+09:43 to be short, say here, I would actually
+09:45 
+
+09:45 click one of these big liquidations here
+09:48 
+
+09:48 and say I want to be short when he gets
+09:50 
+
+09:50 liquidated and then just schedule that.
+09:53 
+
+09:53 You can see I have a couple scheduled
+09:54 
+
+09:54 here. So I have a scheduled short and I
+09:57 
+
+09:57 have a scheduled long. It entered a
+09:59 
+
+09:59 position a little bit earlier and it
+10:02 
+
+10:02 entered it at the bottom here like
+10:04 
+
+10:04 around this area because I had the
+10:06 
+
+10:06 thesis I will go long or short as long
+10:09 
+
+10:09 as it's a huge liquidation and
+10:10 
+
+10:10 somebody's giving up a position that
+10:12 
+
+10:12 they don't want to give up. Why? Because
+10:14 
+
+10:14 I'm not the sharpest tool in the shed
+10:16 
+
+10:16 and I'm not going to pretend like I can
+10:18 
+
+10:18 predict price. I can't predict price. I
+10:20 
+
+10:20 have the proof.
+10:22 
+
+10:22 I have the proof, dude. I can't just sit
+10:25 
+
+10:25 here and predict price. That's what got
+10:27 
+
+10:27 me into automated trading.
+10:31 
+
+10:31 I just got smoked. Smoked after smoked
+10:33 
+
+10:33 in my time. We all got into trading to
+10:36 
+
+10:36 get our time back. But then we all just
+10:38 
+
+10:38 stare at these screens all day. It's
+10:39 
+
+10:39 crazy, dude. It's crazy.
+10:43 
+
+10:43 So now what I can do here is I could go
+10:46 
+
+10:46 ahead and say, "Hey, let me I have a
+10:49 
+
+10:49 open position that you grabbed for me.
+10:51 
+
+10:51 Great. Let me go ahead and close that
+10:53 
+
+10:53 position."
+10:55 
+
+10:55 and I could close it 100% when there are
+10:59 
+
+10:59 liquidations of 3 million
+11:02 
+
+11:02 in 10 minutes.
+11:05 
+
+11:05 So when there's 3 million in
+11:06 
+
+11:06 liquidations in 10 minutes, this
+11:08 
+
+11:08 position will automatically close. I can
+11:09 
+
+11:09 go live my life, dude. Get your time
+11:11 
+
+11:11 back. Let's get it. You can see there's
+11:13 
+
+11:13 been zero short liquidations. 100 uh
+11:15 
+
+11:15 800K. These are hyper hyperlquid
+11:19 
+
+11:19 hyperlquidations.
+11:21 
+
+11:21 Hyperlidated.
+11:23 
+
+11:23 This is all through Hyperlquid, by the
+11:25 
+
+11:25 way.
+11:29 
+
+11:29 You can see things that are hard to do
+11:31 
+
+11:31 as a human. I don't know about you,
+11:33 
+
+11:33 dude, but I personally,
+11:37 
+
+11:37 me personally,
+11:40 
+
+11:40 will not follow rules like this. I could
+11:42 
+
+11:42 say, "Hey, I only want to have max 30%
+11:46 
+
+11:46 margin."
+11:50 
+
+11:50 If I ever go over 30% here, get me out
+11:54 
+
+11:54 of position.
+11:56 
+
+11:56 So, if you have 100k balance,
+11:58 
+
+11:58 if it ever goes if you ever get a
+11:60 
+
+11:60 position that's over 30% of that, it's
+12:02 
+
+12:02 going to trim that position. And this
+12:04 
+
+12:04 has saved me so many times where it's
+12:08 
+
+12:08 just like I'm a little tilted. I just
+12:09 
+
+12:09 want to get in a bigger and bigger and
+12:10 
+
+12:10 bigger and bigger position. It says,
+12:12 
+
+12:12 nope, sorry. You're over your max. I
+12:14 
+
+12:14 usually have this set at 10%. I've just
+12:17 
+
+12:17 been updating this app lately and it
+12:19 
+
+12:19 made it change. So I keep it at 10%
+12:21 
+
+12:21 because that way I could live forever.
+12:24 
+
+12:24 The problem is with trading is you have
+12:26 
+
+12:26 one bad idea, one bad day, one sleepless
+12:28 
+
+12:28 night, you make one bad decision, you
+12:30 
+
+12:30 get liquidated forever. You're gone
+12:32 
+
+12:32 forever. So if you have a risk control
+12:35 
+
+12:35 in the cloud, you know that I could
+12:38 
+
+12:38 never go over in this example 30%
+12:40 
+
+12:40 margin.
+12:42 
+
+12:42 I could never go over 40x leverage. I
+12:44 
+
+12:44 mean that's the cap, but that's the
+12:47 
+
+12:47 maximum here. And you could set this
+12:49 
+
+12:49 like if I wasn't trying to emulate what
+12:51 
+
+12:51 everybody's doing, I would keep this at
+12:53 
+
+12:53 like 10%. Or 10x leverage and say, "Hey,
+12:56 
+
+12:56 auto close if it's over 10x." Because
+12:58 
+
+12:58 that means I'm a little tilted. I'm
+12:59 
+
+12:59 outside of what I want to trade. You see
+13:01 
+
+13:01 what I'm saying? So for me, I'm just
+13:04 
+
+13:04 thinking about all of the things I've
+13:05 
+
+13:05 learned in the gap of from where I was
+13:08 
+
+13:08 in the past when I was a hand trading
+13:10 
+
+13:10 trader using too much leverage and
+13:13 
+
+13:13 getting absolutely smoked. Everything
+13:16 
+
+13:16 from that point on to 5 years of
+13:18 
+
+13:18 automated trading, everything that I can
+13:21 
+
+13:21 think of to put bumpers around my 40x
+13:24 
+
+13:24 trading, I'm doing because I don't
+13:26 
+
+13:26 believe in 40x trading. I don't think
+13:27 
+
+13:27 people can be profitable for the long
+13:30 
+
+13:30 term with 40x trading.
+13:32 
+
+13:32 And if I am profitable
+13:36 
+
+13:36 over the long term,
+13:38 
+
+13:38 then I've built a killer app for the
+13:41 
+
+13:41 number one product in crypto. The number
+13:43 
+
+13:43 one product in crypto is 40x or max
+13:46 
+
+13:46 leverage, whatever max is on the
+13:48 
+
+13:48 exchange you're using. On hyperlquid,
+13:50 
+
+13:50 it's 40x on BTC.
+13:54 
+
+13:54 Now, there are 3 weeks of results on my
+13:57 
+
+13:57 Twitter, but dude, don't hold my results
+13:60 
+
+13:60 results too tightly. These results
+14:03 
+
+14:03 aren't something that you can just plug
+14:04 
+
+14:04 and play and get
+14:07 
+
+14:07 >> but they're all here
+14:11 
+
+14:11 on YouTube
+14:13 
+
+14:13 >> and then from that point
+14:15 
+
+14:15 >> the universe is going to get out your
+14:16 
+
+14:16 way it's water it wants to move and
+14:20 
+
+14:20 stuff you know
+14:23 
+
+14:23 >> then you can also have a max draw down
+14:25 
+
+14:25 so say like if I ever hit a draw down
+14:27 
+
+14:27 and this is usually like 3% for me and
+14:30 
+
+14:30 these settings got updated
+14:33 
+
+14:33 But if I hit a 3% draw down on my full
+14:35 
+
+14:35 account in a day, get me out of there.
+14:37 
+
+14:37 Don't let me trade anymore because I'm
+14:39 
+
+14:39 trying to live a thousand days. And
+14:40 
+
+14:40 remember, that's the problem is most
+14:43 
+
+14:43 people die in one day as traders and
+14:46 
+
+14:46 it's just like one awful bad day that
+14:48 
+
+14:48 they lost all of their money and they
+14:50 
+
+14:50 were actually a solid trader before, but
+14:52 
+
+14:52 they got on tilt one time. So all of
+14:56 
+
+14:56 these things I'm building into the Quant
+14:58 
+
+14:58 app are about risk.
+15:00 
+
+15:00 about risk because it's about living for
+15:03 
+
+15:03 the next thousand trades.
+15:05 
+
+15:05 And I have the proof of that because I
+15:07 
+
+15:07 spent the last five years trading in
+15:10 
+
+15:10 production. And I know it's not it's not
+15:14 
+
+15:14 about one trade. But if you're a hand
+15:17 
+
+15:17 trader, you lose all of your money on
+15:19 
+
+15:19 one trade,
+15:21 
+
+15:21 one big liquidation that happens. I know
+15:24 
+
+15:24 you're probably a responsible trader.
+15:25 
+
+15:25 You follow your rules, yada yada. I get
+15:27 
+
+15:27 it. But I'm not betting on myself over a
+15:30 
+
+15:30 thousand trades to never to never use
+15:33 
+
+15:33 more margin than I'm supposed to, to
+15:35 
+
+15:35 never uh disrespect my max draw down for
+15:38 
+
+15:38 the day. These things are built in
+15:41 
+
+15:41 to the Quan app. And another huge thing
+15:44 
+
+15:44 that's helped me so many times so far,
+15:46 
+
+15:46 again, I'm only on my this is my fourth
+15:48 
+
+15:48 week, but
+15:50 
+
+15:50 this 8 am to 4 pm or whatever your eight
+15:52 
+
+15:52 hours a day schedule is. It won't let me
+15:55 
+
+15:55 enter positions outside of the range
+15:58 
+
+15:58 that I select. And I think that's
+15:60 
+
+16:00 amazing for your life, but also amazing
+16:04 
+
+16:04 for your bank account. Now, again, this
+16:06 
+
+16:06 is not financial advice. You're not
+16:07 
+
+16:07 going to go ahead and get results that I
+16:09 
+
+16:09 get just by downloading an app. If you
+16:11 
+
+16:11 think you're going to download an app
+16:12 
+
+16:12 and just get a bunch of results, you're
+16:13 
+
+16:13 not. This this is leaning into the
+16:16 
+
+16:16 biggest push back I always got when I
+16:19 
+
+16:19 was telling people to automate their
+16:20 
+
+16:20 trading, you should automate your
+16:21 
+
+16:21 trading, they're like, "No, I'm not
+16:22 
+
+16:22 going to automate my trading because
+16:24 
+
+16:24 there's intuition to the markets." So
+16:26 
+
+16:26 instead of me being arrogant and
+16:28 
+
+16:28 thinking my way is the best way,
+16:30 
+
+16:30 automated trading is the best way, I'm
+16:32 
+
+16:32 leaning in now. So I spent five years, I
+16:35 
+
+16:35 gave you all of the information you need
+16:36 
+
+16:36 to know about automated trading. I gave
+16:39 
+
+16:39 you the courses. I give you everything.
+16:42 
+
+16:42 I see how small of a percentage are
+16:44 
+
+16:44 actually going to go ahead and learn to
+16:46 
+
+16:46 code and automate their trading. So, I'm
+16:48 
+
+16:48 ignoring 99% of people. This next couple
+16:52 
+
+16:52 years, I'm going to build it all into
+16:53 
+
+16:53 the Quant app. All the ideas I have, I'm
+16:56 
+
+16:56 going to try to figure out 40x leverage
+16:58 
+
+16:58 trading. I don't have a high belief in
+17:00 
+
+17:00 this. I think I'm going to blow up.
+17:04 
+
+17:04 But if I don't, then damn, this app is
+17:06 
+
+17:06 fire.
+17:09 
+
+17:09 So, you can check out all of the risk
+17:11 
+
+17:11 section here. I think this is probably
+17:13 
+
+17:13 the most important part.
+17:15 
+
+17:15 It gets good. I I've been able to get
+17:17 
+
+17:17 good entries with it. But again, that
+17:18 
+
+17:18 takes intuition because if I would have
+17:20 
+
+17:20 bought liquidations too early, I'd be
+17:22 
+
+17:22 down. Last night, for example, if I zoom
+17:25 
+
+17:25 in here, it took intuition to profit
+17:28 
+
+17:28 here because it purchased or it shorted
+17:31 
+
+17:31 right here. Great entry on the short,
+17:34 
+
+17:34 but it took intuition to close down
+17:37 
+
+17:37 here.
+17:39 
+
+17:39 So, this is not a plugandplay. Nobody's
+17:42 
+
+17:42 ever going to give you a plug-and-play
+17:43 
+
+17:43 anything as an algorithmic trader. I can
+17:46 
+
+17:46 tell you that. Like, none of my friends
+17:47 
+
+17:47 that are algo traders give me anything.
+17:50 
+
+17:50 So, you think somebody on YouTube's just
+17:51 
+
+17:51 going to give you a plug-and-play bot?
+17:53 
+
+17:53 No way. But that's why that whole me
+17:56 
+
+17:56 telling you you should automate your
+17:58 
+
+17:58 trading thing, that's why I cooked it,
+18:00 
+
+18:00 dude. I stopped. I'm not pitching you on
+18:02 
+
+18:02 that anymore. I don't I don't care if
+18:04 
+
+18:04 you automate your trading. I don't care.
+18:08 
+
+18:08 I was just showing you guys for the last
+18:10 
+
+18:10 5 years exactly how to do that. But I
+18:12 
+
+18:12 was wrong there to say you should do
+18:14 
+
+18:14 that. That's me saying you should go
+18:16 
+
+18:16 spend 6 months of your life, heads down,
+18:19 
+
+18:19 four hours a day learning how to code
+18:21 
+
+18:21 when coding is not interesting at all to
+18:23 
+
+18:23 you, you know? So that was that was my
+18:26 
+
+18:26 bad. I'm a data dog. The data has led me
+18:28 
+
+18:28 to hey, everybody's using 40x leverage.
+18:31 
+
+18:31 Okay, great. Let me go back into the
+18:33 
+
+18:33 trenches with them and see if I can
+18:36 
+
+18:36 figure it out.
+18:38 
+
+18:38 Anyways, you can see some of the actions
+18:41 
+
+18:41 here. We'll go over those last. You can
+18:42 
+
+18:42 put your notes in. I think this is a
+18:44 
+
+18:44 pretty chill feature. I had some good
+18:46 
+
+18:46 notes. I just write my notes, whatever
+18:48 
+
+18:48 my trade plan is. I like that. It's
+18:51 
+
+18:51 nice. And I think in the future I'll put
+18:53 
+
+18:53 probably put like a AI something like
+18:55 
+
+18:55 look at my notes, review my notes. I
+18:57 
+
+18:57 don't know. There's a lot of good ideas.
+18:58 
+
+18:58 Feel free to jump in the Discord and
+19:01 
+
+19:01 post your ideas or bugs or really
+19:05 
+
+19:05 anything in the public Quant app section
+19:10 
+
+19:10 here. You can see Quant app in the
+19:13 
+
+19:13 Discord and just post whatever you have.
+19:16 
+
+19:16 You know, as this is a early beta, there
+19:18 
+
+19:18 are going to be bugs.
+19:20 
+
+19:20 Absolutely.
+19:22 
+
+19:22 You can see you can see all the
+19:23 
+
+19:23 liquidations in the last 10 minutes, 1
+19:26 
+
+19:26 hour, 4 hours. This is interesting data.
+19:28 
+
+19:28 I can't tell you the strategy to trade
+19:29 
+
+19:29 it. I'm not a financial adviser. You can
+19:32 
+
+19:32 see all the liquidations coming through.
+19:34 
+
+19:34 We have every single Hyperlquid user
+19:37 
+
+19:37 that is trading any sort of size. I'm
+19:40 
+
+19:40 watching all of them. So, you can see
+19:41 
+
+19:41 them all come through and see exactly
+19:43 
+
+19:43 what they're trading. You can see XYZ,
+19:46 
+
+19:46 MSTR, XMR,
+19:49 
+
+19:49 TIA, JUB, ETH. These are their real
+19:52 
+
+19:52 liquidations, dude.
+19:55 
+
+19:55 It's amazing. And then you can pull it
+19:58 
+
+19:58 up here and get even deeper into their
+20:01 
+
+20:01 files here into their uh accounts. And
+20:06 
+
+20:06 you can do the same thing here. You can
+20:07 
+
+20:07 you can name people and you can pull
+20:09 
+
+20:09 them up.
+20:10 
+
+20:10 You can see analyzing wallet here. I get
+20:12 
+
+20:12 to see their actual wallet activity. See
+20:15 
+
+20:15 what their trades are. Again, this is
+20:17 
+
+20:17 just data. It's just data and bumpers
+20:19 
+
+20:19 around your trading. So if you have
+20:20 
+
+20:20 rules that you want to implement, these
+20:22 
+
+20:22 are my rules, not your rules. Right? So
+20:24 
+
+20:24 if you don't have a max draw down per
+20:26 
+
+20:26 day, okay, well change that. If you want
+20:30 
+
+20:30 a bigger longer session here,
+20:33 
+
+20:33 you want a different time zone, that's
+20:34 
+
+20:34 fine. That's fine. You can change all of
+20:36 
+
+20:36 it. This is just me taking my learnings
+20:38 
+
+20:38 from the past few years as a quant and
+20:41 
+
+20:41 implementing it into
+20:43 
+
+20:43 a app because at the end of the day, if
+20:46 
+
+20:46 everybody watching is still using 40x
+20:48 
+
+20:48 leverage trading by hand, I got to help
+20:50 
+
+20:50 my brothers and sisters out there.
+20:52 
+
+20:52 That's, you know, if I if I have a
+20:53 
+
+20:53 better way of trading, I have to I have
+20:56 
+
+20:56 to put it out there. Anyways, let's go
+20:59 
+
+20:59 ahead and see if this works. I don't
+21:00 
+
+21:00 know if it'll work for me forever.
+21:02 
+
+21:02 Again, 40x leverage is is sketch. Um,
+21:06 
+
+21:06 what are other things can we do here?
+21:07 
+
+21:07 Actions. You can enter and exit. Um, you
+21:11 
+
+21:11 could play around with these, but I just
+21:12 
+
+21:12 entered or I just put a close here. On
+21:15 
+
+21:15 liquidations means when there's an
+21:18 
+
+21:18 amount of short liquidations, 3 million.
+21:20 
+
+21:20 You saw me put that in. Close at licks
+21:22 
+
+21:22 is interesting. I could say close when
+21:24 
+
+21:24 shorts get liquidated. So I could say
+21:27 
+
+21:27 one of these guys essentially. I get to
+21:29 
+
+21:29 pick one.
+21:31 
+
+21:31 You can see their numbers are here.
+21:33 
+
+21:33 91599.
+21:34 
+
+21:34 So I could say, hey, when he gets
+21:36 
+
+21:36 liquidated or the price essentially gets
+21:38 
+
+21:38 there, let me go ahead and close. This
+21:41 
+
+21:41 is very interesting as well. The ticks
+21:43 
+
+21:43 here. So hand traders, you're spending
+21:45 
+
+21:45 three times as much on every single
+21:48 
+
+21:48 trade that you make because you're using
+21:50 
+
+21:50 market orders a lot of the time. So
+21:52 
+
+21:52 that's like going to the Apple store and
+21:54 
+
+21:54 buying an iPhone for $3,000
+21:57 
+
+21:57 when it's $1,000
+21:59 
+
+21:59 just because you can't wait. But it's
+22:01 
+
+22:01 just how the these markets speed you up.
+22:03 
+
+22:03 They speed you up, dude. And they get
+22:05 
+
+22:05 you trading more. The more you trade,
+22:06 
+
+22:06 the less you have. So this buys on the
+22:09 
+
+22:09 first tick. Or you could say, hey, the
+22:11 
+
+22:11 15th tick. If you go to the 15th tick,
+22:14 
+
+22:14 that effectively makes your trades free.
+22:17 
+
+22:17 There's no fees if you do the math
+22:18 
+
+22:18 behind that. But I'm in a position right
+22:21 
+
+22:21 now. So, I've got the close settings
+22:22 
+
+22:22 here. I could close immediately if I
+22:24 
+
+22:24 just wanted to. I just deselect some of
+22:26 
+
+22:26 this stuff and close 100% at tick one or
+22:29 
+
+22:29 tick 15 or whatever. And I could close
+22:34 
+
+22:34 50%. And this I found to be very helpful
+22:36 
+
+22:36 when you're adding I be I add like.1% 5%
+22:41 
+
+22:41 1%. Honestly, most of my losses have
+22:44 
+
+22:44 come from me adding or opening a
+22:47 
+
+22:47 position by myself. So again, I can't
+22:49 
+
+22:49 give you a strategy. I can't tell you
+22:51 
+
+22:51 how to trade. I'm not a financial
+22:53 
+
+22:53 advisor.
+22:55 
+
+22:55 You're assuming all risk. This might not
+22:57 
+
+22:57 even work. It might not even execute the
+22:59 
+
+22:59 trade. This is early early beta. So make
+23:03 
+
+23:03 sure to have your computer wide open and
+23:06 
+
+23:06 ready to override anything. Use tiny
+23:10 
+
+23:10 size. If you are going to use this app,
+23:12 
+
+23:12 use a brand new wallet. You have to put
+23:14 
+
+23:14 your private key in here. Use a brand
+23:16 
+
+23:16 new wallet. Do not use a wallet that has
+23:19 
+
+23:19 connection to a lot of money. I just I'm
+23:22 
+
+23:22 just trying to give you best practices.
+23:24 
+
+23:24 I'm not malicious, but this is just best
+23:26 
+
+23:26 practices in general. Just be careful
+23:29 
+
+23:29 with your private keys.
+23:32 
+
+23:32 Some other things you can do here. Uh
+23:34 
+
+23:34 what else? Like I like using these small
+23:36 
+
+23:36 amounts because then usually what
+23:39 
+
+23:39 happens is I'm wrong. So if I'm using
+23:41 
+
+23:41 small amounts I can at least okay my
+23:44 
+
+23:44 first entry
+23:46 
+
+23:46 I like to have all my entries be
+23:48 
+
+23:48 triggered by some sort of liquidation
+23:49 
+
+23:49 something. But I can't tell you what how
+23:52 
+
+23:52 I can't tell you how to trade because
+23:54 
+
+23:54 literally you can use liquidations in
+23:56 
+
+23:56 multiple ways. You could use it in the
+23:58 
+
+23:58 way where like okay there's there's
+23:60 
+
+23:60 amount uh some liquidations that are
+24:02 
+
+24:02 long liquidations up here. that means
+24:04 
+
+24:04 that the price is going to keep going
+24:06 
+
+24:06 down and there's going to be a cascade.
+24:07 
+
+24:07 You could be right. You could be right.
+24:10 
+
+24:10 But in the same thought is, oh well,
+24:13 
+
+24:13 there's a bunch of liquidations here.
+24:15 
+
+24:15 Maybe it's time to buy the reversal. So
+24:18 
+
+24:18 just like trading, this all comes down
+24:20 
+
+24:20 to your ideas, your strategies.
+24:22 
+
+24:22 >> I'm just looking at this data
+24:23 
+
+24:23 >> again, you know, seven to nine. Look how
+24:26 
+
+24:26 much more training I have done by simply
+24:29 
+
+24:29 starting at four, right? And so now you
+24:31 
+
+24:31 do that and as the years go on, the
+24:34 
+
+24:34 separation that you have with your
+24:36 
+
+24:36 competitors and your peers just grows
+24:38 
+
+24:38 larger,
+24:39 
+
+24:39 >> larger and larger and larger and larger
+24:40 
+
+24:40 and larger.
+24:41 
+
+24:41 >> By year five or six, doesn't matter what
+24:44 
+
+24:44 kind of work they do in summer, they're
+24:46 
+
+24:46 never going to catch up.
+24:47 
+
+24:47 >> They're never going to catch up, dude.
+24:49 
+
+24:49 So
+24:51 
+
+24:51 what else can you do here? You can
+24:52 
+
+24:52 explore this yourself and there's little
+24:54 
+
+24:54 I buttons that tell you, but there's
+24:56 
+
+24:56 either if you're in a position, you have
+24:58 
+
+24:58 two options, add or close. If you're not
+24:60 
+
+24:60 in a position, you can open a position
+25:02 
+
+25:02 and you can schedule positions. Uh
+25:04 
+
+25:04 again, like I don't love the I don't
+25:06 
+
+25:06 love the manual part of this, but if it
+25:08 
+
+25:08 is going to be manual, hey, I'm buying
+25:10 
+
+25:10 on the 15th tick because remember, you
+25:12 
+
+25:12 can buy on market as a hand trader. You
+25:16 
+
+25:16 can't even buy market order. You can't
+25:17 
+
+25:17 even do market orders with the Quant
+25:19 
+
+25:19 app. So just right there using the app,
+25:22 
+
+25:22 you save 66% on every single trade. And
+25:26 
+
+25:26 you don't have to sit there and try to
+25:28 
+
+25:28 get in and out. And yeah, it's just it's
+25:31 
+
+25:31 I love it so far. But again, this is so
+25:33 
+
+25:33 so early and I'll probably end up
+25:35 
+
+25:35 blowing up still because I don't believe
+25:37 
+
+25:37 in 40x leverage.
+25:40 
+
+25:40 So, use it at your own risk. Um, let's
+25:43 
+
+25:43 see if there's anything else here. You
+25:44 
+
+25:44 can explore a little bit. You can see
+25:46 
+
+25:46 you can name wallets. So, these are real
+25:48 
+
+25:48 wallets that are going to be stored on
+25:51 
+
+25:51 your Quant app. So, you can see this guy
+25:54 
+
+25:54 had $90 million and I've seen some
+25:56 
+
+25:56 really crazy patterns by looking at his
+25:59 
+
+25:59 how he trades and he's kind of been
+26:01 
+
+26:01 moving the market lately, but is that
+26:03 
+
+26:03 going to happen forever? Absolutely not.
+26:06 
+
+26:06 There's going to be new patterns that
+26:07 
+
+26:07 emerge and I can't tell you what pattern
+26:10 
+
+26:10 works. All I can give you is this these
+26:12 
+
+26:12 bumpers. These are like bumpers. You're
+26:15 
+
+26:15 if you're using the Quant app, you're
+26:16 
+
+26:16 renting some bumpers that might break.
+26:18 
+
+26:18 So, make sure to keep your your uh your
+26:22 
+
+26:22 exchange open. Use a new account. Um you
+26:26 
+
+26:26 could see it shows your entry price,
+26:28 
+
+26:28 your size, your margin. This is the
+26:30 
+
+26:30 important thing to me. Like this is how
+26:32 
+
+26:32 much money is coming out of my pocket,
+26:34 
+
+26:34 my margin, because I know I'm using 40x
+26:36 
+
+26:36 leverage here. You can have actions here
+26:39 
+
+26:39 where you say, "Hey, I only want to
+26:41 
+
+26:41 trade smaller leverage." I would highly
+26:43 
+
+26:43 recommend if you're new to trading,
+26:45 
+
+26:45 don't use leverage. And if you're going
+26:47 
+
+26:47 to use leverage, change it to like 2x
+26:50 
+
+26:50 leverage or something and don't let
+26:51 
+
+26:51 yourself go over it. So, this is a rule
+26:54 
+
+26:54 that I wanted to use, but I kind of
+26:56 
+
+26:56 forced into using 40x leverage because
+26:59 
+
+26:59 that is the number one product right now
+27:01 
+
+27:01 in crypto. So, if I was being more
+27:04 
+
+27:04 responsible, I would be using like 4x
+27:07 
+
+27:07 leverage and I would put a cap on here
+27:08 
+
+27:08 to make sure I never went over 10
+27:10 
+
+27:10 because that would mean I was fully
+27:11 
+
+27:11 tilted.
+27:14 
+
+27:14 You can see this log here. It's not the
+27:17 
+
+27:17 best yet, but I'm going to keep working
+27:19 
+
+27:19 on it. I just have it um show the the
+27:23 
+
+27:23 actions it's taken like buy by close
+27:26 
+
+27:26 sell,
+27:27 
+
+27:27 you know, sell for short. Um it's it's
+27:30 
+
+27:30 got a ways to go, I'd say, the log, but
+27:32 
+
+27:32 it's something and it it helps you
+27:35 
+
+27:35 figure out what happened if you're like
+27:37 
+
+27:37 away from the computer. The way I like
+27:38 
+
+27:38 to use this, I think this is the this is
+27:41 
+
+27:41 the killer feature is the scheduled
+27:43 
+
+27:43 things. The scheduled whether it's on
+27:46 
+
+27:46 somebody's liquidation or Yeah, I
+27:49 
+
+27:49 actually my favorite just to tell you my
+27:51 
+
+27:51 favorite. I can't give you financial
+27:52 
+
+27:52 advice again. And if you do use this
+27:54 
+
+27:54 app, you're assuming all risks and it
+27:55 
+
+27:55 might break halfway through. So, make
+27:57 
+
+27:57 sure to keep your eyes on it. Uh but
+28:01 
+
+28:01 my favorite feature is just clicking one
+28:03 
+
+28:03 of these. If I want to be short, okay,
+28:05 
+
+28:05 I'm not going short until one of these
+28:08 
+
+28:08 big guys gets liquidated. So, I just
+28:10 
+
+28:10 click that and I
+28:12 
+
+28:12 do that. Um, if I want to be long, okay,
+28:15 
+
+28:15 well, I know in the past I've been wrong
+28:17 
+
+28:17 so often that I'm not going to bet on
+28:19 
+
+28:19 myself here. So, I'm just going to click
+28:20 
+
+28:20 that. And you can see it goes to the
+28:22 
+
+28:22 open at licks feature. So, I this is my
+28:24 
+
+28:24 favorite feature so far, but I'm curious
+28:26 
+
+28:26 to hear from you like which one do you
+28:28 
+
+28:28 like the best? How do you use this app?
+28:30 
+
+28:30 Again, I'm not a financial adviser. I
+28:32 
+
+28:32 can't give you financial advice. I can't
+28:34 
+
+28:34 tell you how to trade. I don't know. Um
+28:37 
+
+28:37 I there's no there's nothing that I can
+28:39 
+
+28:39 just be like, boom, do this, run this.
+28:41 
+
+28:41 There's no download. You can't just
+28:42 
+
+28:42 download and be profitable overnight.
+28:44 
+
+28:44 This is hard work. There's intuition to
+28:46 
+
+28:46 this for sure. It's just a different
+28:48 
+
+28:48 look at the market than most people
+28:51 
+
+28:51 take. And um that's kind of the full
+28:53 
+
+28:53 overview here. See positions, actions,
+28:56 
+
+28:56 play around with those scheduled risk.
+28:59 
+
+28:59 uh set up your risk settings to be much
+29:01 
+
+29:01 much tighter than this, please. I I'm
+29:04 
+
+29:04 gonna switch this to 10%. I'm just in a
+29:06 
+
+29:06 trade, so I it's locked. And the reason
+29:09 
+
+29:09 that's like another feature, right?
+29:10 
+
+29:10 Because for me, it's like, okay, I can
+29:12 
+
+29:12 have these things monitoring my risk,
+29:14 
+
+29:14 but I'll always just turn them off.
+29:17 
+
+29:17 So, I have a lock here that I can't turn
+29:19 
+
+29:19 it off.
+29:21 
+
+29:21 Um what else? Yeah, that's about it. So,
+29:23 
+
+29:23 let me know if you have any questions
+29:24 
+
+29:24 inside the Discord uh in the Discord
+29:27 
+
+29:27 chat and I will keep updating and making
+29:30 
+
+29:30 more and more videos to give you full
+29:32 
+
+29:32 overviews and I will rely on your
+29:34 
+
+29:34 questions for those next videos. So, um,
+29:38 
+
+29:38 even if you're not used to chatting and
+29:40 
+
+29:40 discords, yada yada, please do step out
+29:43 
+
+29:43 of your zone a little bit, break out of
+29:46 
+
+29:46 your shell and put the questions you
+29:48 
+
+29:48 truly have because I have a, you know, I
+29:52 
+
+29:52 I'm here making stream. I'm on stream
+29:54 
+
+29:54 all the time and it's super easy to keep
+29:57 
+
+29:57 this iteration between you and I very
+29:59 
+
+29:59 very fast because some of you even come
+30:02 
+
+30:02 to the private Zooms that happen each
+30:04 
+
+30:04 day. So, if you think about it, I will
+30:07 
+
+30:07 not only give you this app, but I will
+30:11 
+
+30:11 sit here and help you understand it as
+30:14 
+
+30:14 long as you just ask those questions
+30:16 
+
+30:16 that you truly have. It's it's a lot.
+30:20 
+
+30:20 It's going to take some time to
+30:22 
+
+30:22 understand, but I would focus on just
+30:26 
+
+30:26 taking in the data. There's no rush to
+30:28 
+
+30:28 become a trader. You don't need, if
+30:30 
+
+30:30 you're not a trader, do not download
+30:32 
+
+30:32 this app. First off, it is on
+30:34 
+
+30:34 Hyperlquid. Um,
+30:37 
+
+30:37 only on Hyperliquid for now.
+30:40 
+
+30:40 But just remember the markets are never
+30:42 
+
+30:42 going anywhere. And please do not risk
+30:45 
+
+30:45 more money than you have that you can
+30:47 
+
+30:47 lose because if you are trading the
+30:50 
+
+30:50 worst case scenario, which happens to
+30:52 
+
+30:52 90% of people, is they lose all the
+30:55 
+
+30:55 money they put in. So knowing that,
+30:59 
+
+30:59 no offense, but you nor or I are in that
+31:02 
+
+31:02 10%.
+31:04 
+
+31:04 We're not going to just just come on,
+31:05 
+
+31:05 let the let the ego die, right? It's
+31:08 
+
+31:08 hard. It's a hard pill to swallow. Hey,
+31:09 
+
+31:09 we're not we're not we're not better
+31:12 
+
+31:12 than other people when it comes to
+31:13 
+
+31:13 trading. You can't just work harder at
+31:14 
+
+31:14 trading and and you can't just trade
+31:17 
+
+31:17 more and be more profitable. Once you
+31:20 
+
+31:20 realize that, then approaching the
+31:22 
+
+31:22 market in a different way, looking at,
+31:24 
+
+31:24 hey, you had a good idea. You wanted to
+31:26 
+
+31:26 be long. Well, I want to be long right
+31:28 
+
+31:28 now, but I'm not going to be long until
+31:30 
+
+31:30 you have to give up your long. Or I want
+31:32 
+
+31:32 to be short right now, but I'm not going
+31:34 
+
+31:34 to get short until you give up your
+31:36 
+
+31:36 short. Is that a better approach to the
+31:38 
+
+31:38 market? I don't know, and I can't tell
+31:40 
+
+31:40 you that. So, um, you know, download
+31:43 
+
+31:43 this at your own risk. Please do ask any
+31:45 
+
+31:45 questions you have. Much love to you.
+31:47 
+
+31:47 I'll be in the Discord answering every
+31:49 
+
+31:49 question. bye-bye.
