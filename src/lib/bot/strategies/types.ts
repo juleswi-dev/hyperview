@@ -1,4 +1,5 @@
 import type { OrderRequest, CancelRequest, AccountState, MarketSnapshot, FillEvent } from "@/types/exchange";
+import type { LiquidationSignal } from "@/lib/bot/feeds/LiquidationFeed";
 
 export interface StrategyContext {
   placeOrder(order: OrderRequest): Promise<string>;
@@ -6,6 +7,7 @@ export interface StrategyContext {
   cancelAllOrders(coin?: string): Promise<void>;
   getAccount(): AccountState;
   getMarketSnapshot(coin: string): MarketSnapshot | null;
+  getLiquidations(coin?: string, sinceMs?: number): LiquidationSignal[];
   log(level: "info" | "warn" | "error", message: string): void;
 }
 

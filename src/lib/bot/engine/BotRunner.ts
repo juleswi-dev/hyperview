@@ -22,6 +22,7 @@ import {
 } from "../persistence/botRepo";
 import { insertTrade, insertLog, insertEquitySnapshot } from "../persistence/tradeRepo";
 import { getAllMids } from "@/lib/hyperliquid/api";
+import { liquidationFeed } from "../feeds/LiquidationFeed";
 
 // Minimum interval between price refreshes (ms)
 const PRICE_CACHE_TTL = 5_000;
@@ -90,6 +91,11 @@ export class BotRunner {
     if (this.running) return;
     this.running = true;
 
+    // Register as liquidation feed consumer if sniper strategy
+    if (this.config.strategyId === "liquidation-sniper") {
+      liquidationFeed.addConsumer(this.botId);
+    }
+
     this.log("info", `Bot starting (mode: ${this.config.mode}, strategy: ${this.config.strategyId})`);
     updateBotStatus(this.botId, "running");
 
@@ -114,6 +120,10 @@ export class BotRunner {
       this.log("error", `Failed to start: ${error instanceof Error ? error.message : String(error)}`);
       updateBotStatus(this.botId, "error", String(error));
       this.running = false;
+      // Clean up feed consumer on failure
+      if (this.config.strategyId === "liquidation-sniper") {
+        liquidationFeed.removeConsumer(this.botId);
+      }
     }
   }
 
@@ -138,6 +148,11 @@ export class BotRunner {
       await this.client.cancelAllOrders();
     } catch (error) {
       this.log("warn", `Error during stop: ${error instanceof Error ? error.message : String(error)}`);
+    }
+
+    // Unregister from liquidation feed if sniper
+    if (this.config.strategyId === "liquidation-sniper") {
+      liquidationFeed.removeConsumer(this.botId);
     }
 
     // Persist final state
@@ -191,6 +206,10 @@ export class BotRunner {
             await this.strategy.onStop(this.createContext());
             await this.client.cancelAllOrders();
           } catch { /* best effort */ }
+          // Clean up feed consumer on drawdown stop
+          if (this.config.strategyId === "liquidation-sniper") {
+            liquidationFeed.removeConsumer(this.botId);
+          }
           updateBotStrategyState(this.botId, this.strategy.getState());
           updateBotStatus(this.botId, "error", "Max drawdown reached");
           return;
@@ -333,6 +352,9 @@ export class BotRunner {
           markPrice: mid,
           timestamp: Date.now(),
         };
+      },
+      getLiquidations: (coin?: string, sinceMs?: number) => {
+        return liquidationFeed.getRecentLiquidations(coin, sinceMs);
       },
       log: (level, message) => this.log(level, message),
     };

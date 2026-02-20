@@ -46,6 +46,9 @@ export function ConfigForm({ strategyId, onSubmit, isSubmitting }: ConfigFormPro
   const [sniperEntryOffset, setSniperEntryOffset] = useState(0.5);
   const [sniperTakeProfit, setSniperTakeProfit] = useState(2);
   const [sniperStopLoss, setSniperStopLoss] = useState(1);
+  const [sniperPositionSize, setSniperPositionSize] = useState(5);
+  const [sniperMaxPositions, setSniperMaxPositions] = useState(3);
+  const [sniperCooldown, setSniperCooldown] = useState(30);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -79,9 +82,9 @@ export function ConfigForm({ strategyId, onSubmit, isSubmitting }: ConfigFormPro
           entryOffsetPercent: sniperEntryOffset,
           takeProfitPercent: sniperTakeProfit,
           stopLossPercent: sniperStopLoss,
-          positionSizePercent: 5,
-          maxConcurrentPositions: 3,
-          cooldownMs: 30_000,
+          positionSizePercent: sniperPositionSize,
+          maxConcurrentPositions: sniperMaxPositions,
+          cooldownMs: sniperCooldown * 1_000,
         };
         tickIntervalMs = 2_000;
         break;
@@ -171,19 +174,50 @@ export function ConfigForm({ strategyId, onSubmit, isSubmitting }: ConfigFormPro
         )}
 
         {strategyId === "liquidation-sniper" && (
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <Field label="Min Liq Value (USD)">
-              <input type="number" min={1000} value={sniperMinValue} onChange={(e) => setSniperMinValue(+e.target.value)} className="input" />
-            </Field>
-            <Field label="Entry Offset (%)">
-              <input type="number" min={0} step={0.1} value={sniperEntryOffset} onChange={(e) => setSniperEntryOffset(+e.target.value)} className="input" />
-            </Field>
-            <Field label="Take Profit (%)">
-              <input type="number" min={0.1} step={0.1} value={sniperTakeProfit} onChange={(e) => setSniperTakeProfit(+e.target.value)} className="input" />
-            </Field>
-            <Field label="Stop Loss (%)">
-              <input type="number" min={0.1} step={0.1} value={sniperStopLoss} onChange={(e) => setSniperStopLoss(+e.target.value)} className="input" />
-            </Field>
+          <div className="space-y-5">
+            {/* Signal Settings */}
+            <div>
+              <p className="text-xs text-zinc-500 mb-2 uppercase tracking-wider">Signal Filter</p>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <Field label="Min Liq Value (USD)">
+                  <input type="number" min={1000} step={1000} value={sniperMinValue} onChange={(e) => setSniperMinValue(+e.target.value)} className="input" />
+                </Field>
+                <Field label="Entry Offset (%)">
+                  <input type="number" min={0} step={0.1} value={sniperEntryOffset} onChange={(e) => setSniperEntryOffset(+e.target.value)} className="input" />
+                </Field>
+                <Field label="Take Profit (%)">
+                  <input type="number" min={0.1} step={0.1} value={sniperTakeProfit} onChange={(e) => setSniperTakeProfit(+e.target.value)} className="input" />
+                </Field>
+                <Field label="Stop Loss (%)">
+                  <input type="number" min={0.1} step={0.1} value={sniperStopLoss} onChange={(e) => setSniperStopLoss(+e.target.value)} className="input" />
+                </Field>
+              </div>
+            </div>
+
+            {/* Position Sizing */}
+            <div>
+              <p className="text-xs text-zinc-500 mb-2 uppercase tracking-wider">Position Sizing</p>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                <Field label="Size per Trade (% of Equity)">
+                  <input type="number" min={0.5} max={50} step={0.5} value={sniperPositionSize} onChange={(e) => setSniperPositionSize(+e.target.value)} className="input" />
+                </Field>
+                <Field label="Max Concurrent Positions">
+                  <input type="number" min={1} max={20} value={sniperMaxPositions} onChange={(e) => setSniperMaxPositions(+e.target.value)} className="input" />
+                </Field>
+                <Field label="Cooldown Between Trades (sec)">
+                  <input type="number" min={0} step={5} value={sniperCooldown} onChange={(e) => setSniperCooldown(+e.target.value)} className="input" />
+                </Field>
+              </div>
+              {/* Preview */}
+              <div className="mt-3 px-3 py-2 bg-zinc-800/50 border border-zinc-700/50 rounded-lg">
+                <p className="text-xs text-zinc-400">
+                  Bei <span className="text-white font-medium">$10,000</span> Equity →{" "}
+                  <span className="text-blue-400 font-medium">${(10000 * sniperPositionSize / 100).toLocaleString()}</span> pro Trade,{" "}
+                  max <span className="text-white font-medium">{sniperMaxPositions}</span> gleichzeitig{" "}
+                  = max <span className="text-amber-400 font-medium">${(10000 * sniperPositionSize / 100 * sniperMaxPositions).toLocaleString()}</span> Exposure
+                </p>
+              </div>
+            </div>
           </div>
         )}
       </div>

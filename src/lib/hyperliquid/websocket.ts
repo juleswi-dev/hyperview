@@ -130,8 +130,8 @@ class HyperliquidWebSocket {
           this.handleReconnect();
         };
 
-        this.ws.onerror = (error) => {
-          console.error("[WS] Error:", error);
+        this.ws.onerror = () => {
+          console.warn("[WS] Connection error — will reconnect");
           // Let onclose handle settlement and reconnect — onerror always fires before onclose
         };
       } catch (error) {
